@@ -5,6 +5,22 @@ app_description = "To send coupons in msg"
 app_email = "barcelonsumya@gmail.com"
 app_license = "mit"
 
+# Document Events
+doc_events = {
+    "Customer": {
+        "after_insert": "notification_manager.notification_manager.utils.on_customer_create"
+    }
+}
+
+# Scheduled Tasks
+scheduler_events = {
+    "cron": {
+        "40 10 * * *": [
+            "notification_manager.notification_manager.utils.process_daily_notifications"
+        ]
+    }
+}
+
 # Apps
 # ------------------
 
